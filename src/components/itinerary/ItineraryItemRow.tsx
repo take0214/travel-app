@@ -34,7 +34,7 @@ const ItineraryItemRow: React.FC<Props> = ({ item, onChange, onDelete }) => {
     <Card
       variant="outlined"
       sx={{
-        borderRadius: 2,
+        borderRadius: '32px',
         backgroundColor: '#ffffff',
         borderLeft: item.category === 'move' ? '4px solid #ed6c02' : '4px solid #1976d2',
         boxShadow: '0 2px 6px rgba(0,0,0,0.03)',

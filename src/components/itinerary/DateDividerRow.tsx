@@ -28,7 +28,7 @@ const DateDividerRow: React.FC<any> = ({
         my: 2,
         p: 1.5,
         backgroundColor: '#e8f0fe',
-        borderRadius: 2,
+        borderRadius: '32px',
         border: '1px solid #cce0ff',
         display: 'flex',
         alignItems: 'center',
@@ -55,7 +55,7 @@ const DateDividerRow: React.FC<any> = ({
           }}
           sx={{
             backgroundColor: '#ffffff',
-            borderRadius: 1,
+            borderRadius: '32px',
             width: 170,
           }}
           slotProps={{

@@ -16,7 +16,7 @@ const TimelineFooter: React.FC<{ onAddDivider?: () => void }> = ({ onAddDivider 
           px: 4,
           py: 1.2,
           fontWeight: 'bold',
-          borderRadius: 2,
+          borderRadius: '32px',
           borderWidth: 2,
           '&:hover': { borderWidth: 2 },
         }}

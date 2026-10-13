@@ -94,11 +94,16 @@ export const MoveForm: React.FC<{ item: ItineraryItem; onChange: (id: string, fi
           fullWidth
           size="small"
           multiline
-          rows={2}
+          minRows={4}
+          maxRows={6}
           label="メモ"
           placeholder="座席番号、乗り換え情報、運賃など"
           value={item.notes || ''}
           onChange={(e) => onChange(item.id, 'notes', e.target.value)}
+          sx={{
+            width: '100%',
+            '& .MuiInputBase-root': { borderRadius: '32px' },
+          }}
         />
       </Grid>
     </Grid>
