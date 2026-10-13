@@ -21,6 +21,13 @@ import {
   DialogContentText,
   DialogActions,
 } from '@mui/material';
+import {
+  HashRouter,
+  Routes,
+  Route,
+  Link,
+  useNavigate,
+} from 'react-router-dom';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 
@@ -44,6 +51,7 @@ const DEFAULT_ITEMS = [
 type Timeline = Array<ItineraryItem | DateDivider>;
 
 function ItineraryPlannerScreen() {
+  const navigate = useNavigate();
   const [timelineList, setTimelineList] = useState<Timeline>([
     createEmptyDateDivider(),
     createEmptyItineraryItem(),
@@ -82,6 +90,11 @@ function ItineraryPlannerScreen() {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <CssBaseline />
+      <Box sx={{ px: 2, pt: 2 }}>
+        <Button variant="text" onClick={() => navigate('/')}>
+          ホームへ戻る
+        </Button>
+      </Box>
       <Container maxWidth="md" sx={{ py: 4, minHeight: '100vh', backgroundColor: '#ffffff' }}>
         <Box sx={{ mb: 4, pb: 2, borderBottom: '1px solid #e0e0e0' }}>
           <Typography variant="h4" component="h1" sx={{ fontWeight: 'bold', color: '#1a237e' }}>
@@ -127,6 +140,7 @@ function ItineraryPlannerScreen() {
 }
 
 function TravelTodoScreen() {
+  const navigate = useNavigate();
   const [isOverseas, setIsOverseas] = useState(false);
   const [nights, setNights] = useState(2);
   const [dialogOpen, setDialogOpen] = useState(false);
@@ -221,6 +235,12 @@ function TravelTodoScreen() {
 
   return (
     <Container maxWidth="xs" sx={{ mt: 3, mb: 5 }}>
+      <Box sx={{ px: 2, pt: 2 }}>
+        <Button variant="text" onClick={() => navigate('/')}>
+          ホームへ戻る
+        </Button>
+      </Box>
+
       <Typography variant="h5" sx={{ mb: 2, textAlign: 'center', fontWeight: 'bold' }}>
         旅行準備TODOリスト
       </Typography>
@@ -290,7 +310,7 @@ function TravelTodoScreen() {
   );
 }
 
-function HomeScreen({ onOpenItinerary, onOpenTravel }: any) {
+function HomeScreen() {
   return (
     <Container maxWidth="lg" sx={{ py: 6 }}>
       <Box sx={{ textAlign: 'center', mb: 5 }}>
@@ -309,7 +329,7 @@ function HomeScreen({ onOpenItinerary, onOpenTravel }: any) {
         alignItems="stretch"
       >
         <Card sx={{ width: { xs: '100%', md: 320 }, minHeight: 220, borderRadius: 3, boxShadow: 3 }}>
-          <CardActionArea onClick={onOpenItinerary} sx={{ height: '100%' }}>
+          <CardActionArea component={Link} to="/itinerary" sx={{ height: '100%' }}>
             <CardContent sx={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', p: 4 }}>
               <Typography variant="h5" sx={{ fontWeight: 700, mb: 1 }}>
                 タイムスケジュール
@@ -325,7 +345,7 @@ function HomeScreen({ onOpenItinerary, onOpenTravel }: any) {
         </Card>
 
         <Card sx={{ width: { xs: '100%', md: 320 }, minHeight: 220, borderRadius: 3, boxShadow: 3 }}>
-          <CardActionArea onClick={onOpenTravel} sx={{ height: '100%' }}>
+          <CardActionArea component={Link} to="/travel" sx={{ height: '100%' }}>
             <CardContent sx={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', p: 4 }}>
               <Typography variant="h5" sx={{ fontWeight: 700, mb: 1 }}>
                 旅行準備TODO
@@ -345,27 +365,15 @@ function HomeScreen({ onOpenItinerary, onOpenTravel }: any) {
 }
 
 export default function App() {
-  const [screen, setScreen] = useState<'home' | 'itinerary' | 'travel'>('home');
-
-  if (screen === 'home') {
-    return (
-      <Box sx={{ minHeight: '100vh', background: 'linear-gradient(180deg, #eef4ff 0%, #f9f9ff 100%)' }}>
-        <HomeScreen
-          onOpenItinerary={() => setScreen('itinerary')}
-          onOpenTravel={() => setScreen('travel')}
-        />
-      </Box>
-    );
-  }
-
   return (
-    <Box sx={{ minHeight: '100vh', background: '#f5f7ff' }}>
-      <Box sx={{ px: 2, pt: 2 }}>
-        <Button variant="text" onClick={() => setScreen('home')}>
-          ホームへ戻る
-        </Button>
+    <HashRouter>
+      <Box sx={{ minHeight: '100vh', background: '#f5f7ff' }}>
+        <Routes>
+          <Route path="/" element={<HomeScreen />} />
+          <Route path="/itinerary" element={<ItineraryPlannerScreen />} />
+          <Route path="/travel" element={<TravelTodoScreen />} />
+        </Routes>
       </Box>
-      {screen === 'itinerary' ? <ItineraryPlannerScreen /> : <TravelTodoScreen />}
-    </Box>
+    </HashRouter>
   );
 }
