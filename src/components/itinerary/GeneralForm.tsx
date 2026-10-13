@@ -7,7 +7,7 @@ import {
   Tooltip,
 } from '@mui/material';
 import { OpenInNew as OpenInNewIcon } from '@mui/icons-material';
-import { ItineraryItem } from '../types/itinerary';
+import { ItineraryItem } from '../../types/itinerary';
 
 const getPlacePlaceholder = (category?: string) => {
   switch (category) {

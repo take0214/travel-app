@@ -17,7 +17,7 @@ import { Delete as DeleteOutlineIcon, WarningAmber as WarningAmberIcon } from '@
 
 import MoveForm from './MoveForm';
 import GeneralForm from './GeneralForm';
-import { CATEGORY_OPTIONS, ItineraryItem } from '../types/itinerary';
+import { CATEGORY_OPTIONS, ItineraryItem } from '../../types/itinerary';
 
 type Props = {
   item: ItineraryItem;

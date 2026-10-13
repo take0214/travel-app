@@ -17,7 +17,7 @@ import DirectionsBusIcon from '@mui/icons-material/DirectionsBus';
 import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
 import FlightIcon from '@mui/icons-material/Flight';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
-import { MOVE_METHOD_OPTIONS, ItineraryItem } from '../types/itinerary';
+import { MOVE_METHOD_OPTIONS, ItineraryItem } from '../../types/itinerary';
 
 const getMethodIcon = (method: string) => {
   switch (method) {
